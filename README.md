@@ -26,7 +26,9 @@ Admin Role: Admin users have additional privileges, including the ability to vie
 
 ## **Next Steps:**
 File Validation: You may want to add checks to validate the integrity of files before uploading or downloading.
+
 Enhanced UI: You could further enhance the UI by adding file previews before uploads, progress updates for downloads, and better feedback to users during long processes.
+
 Expand Functionality: Consider adding file versioning or automatic backup features for better management of files.
 
 
