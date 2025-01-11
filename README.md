@@ -17,9 +17,13 @@ The application can read various file types (PDF, Word, PowerPoint, images) and 
 
 ## **Improvements/Considerations:**
 Error Handling: There's error handling for cases like invalid file paths, decompression issues, and login failures, which is good for ensuring the stability of the application.
+
 Security: File encryption is done using cryptography.fernet.Fernet which is a solid choice for symmetric encryption.
+
 File Formats: The app supports multiple file formats such as .pdf, .docx, .pptx, .jpg, .jpeg, .png, and plain text files.
+
 Admin Role: Admin users have additional privileges, including the ability to view encrypted files.
+
 ## **Next Steps:**
 File Validation: You may want to add checks to validate the integrity of files before uploading or downloading.
 Enhanced UI: You could further enhance the UI by adding file previews before uploads, progress updates for downloads, and better feedback to users during long processes.
