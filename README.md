@@ -9,7 +9,8 @@ Logging actions to a file (actions.txt).
 Listing uploaded and encrypted files.
 ## MainWindow: 
 The main window of the application, where users can upload, download, list files, and view previous actions. It also provides admin functionality to view encrypted files.
-##Compression & Decompression:
+
+**Compression & Decompression:**
 Before uploading, files are compressed if they exceed a certain size. When downloading, files can be decompressed.
 File Content Extraction: 
 The application can read various file types (PDF, Word, PowerPoint, images) and extract text from them.
