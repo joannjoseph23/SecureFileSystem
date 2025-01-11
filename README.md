@@ -1,76 +1,26 @@
-# Secure - Distributed File Sharing System
+LoginPage: A login dialog that authenticates users. There are two roles: admin and user, with different privileges.
+FileSharingServer: A class that handles file operations like:
+Encrypting and decrypting files with cryptography.fernet.Fernet.
+Uploading and downloading files with compression options.
+Logging actions to a file (actions.txt).
+Listing uploaded and encrypted files.
+MainWindow: The main window of the application, where users can upload, download, list files, and view previous actions. It also provides admin functionality to view encrypted files.
+Compression & Decompression: Before uploading, files are compressed if they exceed a certain size. When downloading, files can be decompressed.
+File Content Extraction: The application can read various file types (PDF, Word, PowerPoint, images) and extract text from them.
+LoadingScreen: A dialog to show a progress bar during operations like file download.
+Improvements/Considerations:
+Error Handling: There's error handling for cases like invalid file paths, decompression issues, and login failures, which is good for ensuring the stability of the application.
+Security: File encryption is done using cryptography.fernet.Fernet which is a solid choice for symmetric encryption.
+File Formats: The app supports multiple file formats such as .pdf, .docx, .pptx, .jpg, .jpeg, .png, and plain text files.
+Admin Role: Admin users have additional privileges, including the ability to view encrypted files.
+Next Steps:
+File Validation: You may want to add checks to validate the integrity of files before uploading or downloading.
+Enhanced UI: You could further enhance the UI by adding file previews before uploads, progress updates for downloads, and better feedback to users during long processes.
+Expand Functionality: Consider adding file versioning or automatic backup features for better management of files.
 
-Secure - Distributed File Sharing System is a prototype model for a secure file sharing system. This system facilitates file transfer within the local operating system environment. While it doesn't implement actual client-server socket programming, it provides a foundation for further enhancements to enable file transfer between different computers.
-
-## Features
-
-- **Secure Encryption**: Utilizes Fernet encryption from the cryptography library to encrypt files before uploading them to the server, ensuring data security during transfer and storage.
-  
-- **Versioning**: Supports versioning of files, allowing users to create multiple versions of a file and retain a history of changes.
-  
-- **Hashing**: Generates SHA256 hashes of file data, enabling integrity verification and ensuring files remain unaltered during transfer and storage.
-
-- **User-friendly Interface**: Provides a simple command-line interface for users to upload, download, list files, view encrypted data, and remove files from the server.
-
-### Prerequisites
-
-- Python 3.x
-- Required Python libraries: `cryptography`
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your_username/Secure-Distributed-File-Sharing-System.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd Secure-Distributed-File-Sharing-System
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Usage
-
-1. Run the program:
-   ```bash
-   python file_sharing_system.py
-   ```
-
-2. Follow the prompts to perform actions:
-   - **U**: Upload a file
-   - **D**: Download a file
-   - **L**: List files on the server
-   - **E**: View encrypted file data
-   - **R**: Remove a file from the server
-   - **Q**: Quit the program
-
-### Example
-
-```bash
-Enter 'U' to upload a file, 'D' to download a file, 'L' to list files, 'E' to view encrypted file, 'R' to remove a file, or 'Q' to quit: U
-Enter the file path to upload: /path/to/your/file.txt
-Do you want to see the encryption process? (yes/no): yes
-File uploaded successfully: file.txt
-```
 
 ## Disclaimer
 
 This project is a prototype model and does not implement actual client-server socket programming for distributed file sharing. Further enhancements would be required to enable file transfer between different computers over a network.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). 
-
-
-
-## Contact
-
-For any inquiries or feedback, please contact the project maintainer:
-
-https://www.linkedin.com/in/raj-tyagi-83765b21b/
 
