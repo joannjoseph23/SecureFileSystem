@@ -289,48 +289,30 @@ class MainWindow(QMainWindow):
             if ok and file_name:
                 destination_folder = QFileDialog.getExistingDirectory(self, "Select Destination Folder")
                 if destination_folder:
-                    loading = LoadingScreen("Downloading file...")
-                    loading.show()
-                    QApplication.processEvents()
+                    try:
+                        encrypted_file_path = os.path.join(UPLOADS_FOLDER, file_name)
 
-                    encrypted_file_path = os.path.join(UPLOADS_FOLDER, file_name)
-                    print(f"Encrypted file path: {encrypted_file_path}")  # Debugging
-
-                    # Check if file exists before proceeding
-                    if os.path.exists(encrypted_file_path):
+                        # Read encrypted file
                         with open(encrypted_file_path, "rb") as file:
                             encrypted_data = file.read()
 
-                        # Show file size before decompression
-                        original_size = len(encrypted_data)
+                        # Decrypt the data
+                        decrypted_data = self.server.decrypt_file(file_name)
 
-                        # First, decompress the file if necessary
-                        decompressed_data = self.server.decompress_file(encrypted_data)
+                        # Decompress if it was compressed during upload
+                        final_data = self.server.decompress_file(decrypted_data) or decrypted_data
 
-                        # Show file size after decompression
-                        if decompressed_data:
-                            decompressed_size = len(decompressed_data)
+                        # Save the decrypted and decompressed file
+                        file_path = os.path.join(destination_folder, file_name)
+                        with open(file_path, "wb") as file:
+                            file.write(final_data)
 
-                            # Now, decrypt the decompressed data
-                            decrypted_data = self.server.decrypt_file(file_name)
+                        QMessageBox.information(self, "Success", f"File '{file_name}' downloaded and saved at: {file_path}")
+                    except Exception as e:
+                        QMessageBox.warning(self, "Error", f"An error occurred during download: {str(e)}")
 
-                            # Save the decrypted file to the destination folder
-                            file_path = os.path.join(destination_folder, file_name)
-                            with open(file_path, "wb") as file:
-                                file.write(decrypted_data)
-                            QMessageBox.information(self, "Success", f"File '{file_name}' downloaded successfully!")
-                        else:
-                            QMessageBox.warning(self, "Failed", f"Failed to decompress or download '{file_name}'.")
-                    else:
-                        QMessageBox.warning(self, "File Not Found", f"The file '{file_name}' was not found on the server.")
 
-                    loading.close()
-                else:
-                    QMessageBox.information(self, "No File Selected", "No file was selected to download.")
-            else:
-                QMessageBox.information(self, "No Files", "No files available to download.")
-        else:
-            QMessageBox.information(self, "No Files", "No files available to download.")
+
 
 
     def list_files(self):
